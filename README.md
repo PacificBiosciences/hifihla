@@ -1,6 +1,6 @@
-<h1 align="left"><img width="300px" src="figures/logo_HiFiHLA.svg"/></h1>
+<h1 align="center"><img width="300px" src="figures/logo_HiFiHLA.svg"/></h1>
 
-# hifihla
+<h1 align="center">hifihla</h1>
 
 An HLA star-calling tool for PacBio HiFi data types.  
 
