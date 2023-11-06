@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: url(#radial-gradient);
+      }
+
+      .cls-3 {
+        opacity: .2;
+      }
+
+      .cls-3, .cls-4, .cls-5 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        stroke: #1383c6;
+      }
+
+      .cls-4, .cls-5, .cls-6 {
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+
+      .cls-5, .cls-6 {
+        stroke: #fff;
+      }
+
+      .cls-6 {
+        fill: #1383c6;
+      }
+    </style>
+    <radialGradient id="radial-gradient" cx="32" cy="32" fx="32" fy="32" r="22" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00b8c4"/>
+      <stop offset="1" stop-color="#1383c6"/>
+    </radialGradient>
+  </defs>
+  <rect class="cls-1" width="64" height="64"/>
+  <g>
+    <g>
+      <circle class="cls-2" cx="32" cy="32" r="22"/>
+      <path class="cls-3" d="m16.44365,47.55635c-8.59153-8.59153-8.59153-22.52116,0-31.1127s22.52116-8.59153,31.1127,0l-31.1127,31.1127Z"/>
+    </g>
+    <line class="cls-4" x1="19.23794" y1="14" x2="13.9976" y2="14"/>
+    <line class="cls-5" x1="24.66672" y1="41.37239" x2="24.66672" y2="54"/>
+    <line class="cls-4" x1="44.81146" y1="14" x2="50.0518" y2="14"/>
+    <line class="cls-5" x1="39.33328" y1="41.37239" x2="39.33328" y2="54"/>
+    <g>
+      <g>
+        <rect class="cls-6" x="19.66868" y="21.37238" width="10" height="20"/>
+        <path class="cls-6" d="m24.25036,10h-4.58168v8h9.99999v-3.74609c-2.53784-.4392-4.5948-2.08643-5.41831-4.25391Z"/>
+      </g>
+      <g>
+        <rect class="cls-6" x="34.33135" y="21.37238" width="10" height="20" transform="translate(78.66269 62.74476) rotate(180)"/>
+        <path class="cls-6" d="m39.74963,10h4.58172v8h-10v-3.74609c2.53784-.4392,4.59477-2.08643,5.41828-4.25391Z"/>
+      </g>
+    </g>
+    <polygon class="cls-3" points="21.66888 39.37255 21.66888 23.37255 27.66888 23.37255 21.66888 39.37255"/>
+    <polygon class="cls-3" points="36.33148 39.37255 36.33148 23.37255 42.33148 23.37255 36.33148 39.37255"/>
+  </g>
+</svg>
