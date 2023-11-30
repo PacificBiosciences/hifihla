@@ -4,10 +4,7 @@
 
 An HLA star-calling tool for PacBio HiFi data types.  
 
-IPD-IMGT/HLA Version: 3.53 (July 7, 2023)[1]
-
 Authors: [John Harting](https://github.com/jrharting), [Zev Kronenberg](https://github.com/zeeev), [Daniel Baker](https://github.com/dnbaker), [Matt Holt](https://github.com/holtjma)
-
 
 ## Table of Contents ##
 1. [Install](#install)
@@ -20,7 +17,15 @@ Authors: [John Harting](https://github.com/jrharting), [Zev Kronenberg](https://
 
 ## Install <a name="install"></a>
 
+[![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/recipes/hifihla/README.html)
+
 Please refer to our [official pbbioconda page](https://github.com/PacificBiosciences/pbbioconda) for information on Installation, Support, License, Copyright, and Disclaimer.
+
+`hifihla` can be installed from bioconda
+```
+conda install -c bioconda hifihla
+```
+Binaries are also availible in the github releases.
 
 ## Genes <a name="genes"></a>
 
@@ -87,26 +92,27 @@ Options:
 
 
 ### Type HLA from MHC assembled contigs
-`call-contigs` requires three input files and an output directory:
+`call-contigs` requires 2 or 3 input files and an output directory:
  * Assembled contigs aligned to GRCH38 (no alts)
- * Assembled haplotype fasta[.gz] files (2)  
+ * Assembled haplotype fasta[.gz] files (1 or 2)  
 
 Options:
+ * `hap2` is optional -- the fasta argument to `hap1` may contain one or two MHC haplotig sets.  If `hap2` is not set, alleles will be phased by contig name.
  * Define the loci to be extracted and called (see [IMGT genes](https://hla.alleles.org/genes/index.html)) [default all loci]
  * Limit equivalent matches in report -- This is useful to limit reporting of common alleles with shared cDNA.
  * Require assembly alleles to be of a minimum length
 ```
 Extract HLA loci from assembled MHC contigs & call star alleles on extracted sequences
 
-Usage: hifihla call-contigs [OPTIONS] --abam <ALIGNED_ASSEMBLY> --hap1 <HAP1_FA> --hap2 <HAP2_FA> --outdir <OUTDIR>
+Usage: hifihla call-contigs [OPTIONS] --abam <ALIGNED_ASSEMBLY> --hap1 <HAP1_FA> --outdir <OUTDIR>
 
 Options:
   -a, --abam <ALIGNED_ASSEMBLY>  Input assembly aligned to GRCh38
   -p, --hap1 <HAP1_FA>           Input hap1 assembly fa(.gz)
-  -m, --hap2 <HAP2_FA>           Input hap2 assembly fa(.gz)
+  -m, --hap2 <HAP2_FA>           Input hap2 assembly fa(.gz) (optional)
   -o, --outdir <OUTDIR>          Output directory
   -l, --loci [<LOCI>...]         Input comma-sep loci to extract [default: all]
-  -s, --min_length <MINLENGTH>   Minimum length of extracted targets [default: 2000]
+  -s, --min_length <MINLENGTH>   Minimum length of extracted targets [default: 1000]
   -x, --max_matches <MATCHES>    Maximum equivalent matches per query in report [default: 10]
   -j, --threads <THREADS>        Analysis threads [default: 1]
   -v, --verbose...               Enable verbose output
@@ -118,6 +124,10 @@ Options:
                                   -vvv => "Trace" [default: Warn]
   -h, --help                     Print help
   -V, --version                  Print version
+
+Copyright (C) 2004-2023     Pacific Biosciences of California, Inc.
+This program comes with ABSOLUTELY NO WARRANTY; it is intended for
+Research Use Only and not for use in diagnostic procedures.
 ```
 
 ### Align queries to specific alleles in IPD-IMGT/HLA
@@ -349,7 +359,7 @@ $ hifihla align-imgt \
           --fasta HG001_HLA_A_11_01_01_01.fasta \
           -n HLA-A*11:01:01:03 \
           -t HLA00043
-{                                                                                                                                              [38/1857]
+{
   "id": "Query HLA-A_11-01-01-01; Targets HLA00043,HLA15502",
   "hla_alignments": {
     "HLA-A_11-01-01-01": {
@@ -384,7 +394,7 @@ $ hifihla align-imgt \
         "noncode_eddist": 0,
         "differences": []
       },
-     "HLA15502": {                                                                                                                             [3/1857]
+     "HLA15502": {
         "allele_id": "HLA15502",
         "star_name": "HLA-A*11:01:01:03",
         "length": 3503,
@@ -440,8 +450,19 @@ Changelog - PacBio HiFi HLA Typing - hifihla
 - Latest database version v3.53
 - Bug fixes
 
+## v0.2.1: 11/15/23
+### Changes
+- Call-contigs hap2 change to optional
+- Improve output determinism
+- Update README 
+- Fix validation bugs
+
+## v0.2.2: 11/17/23
+### Changes
+- Update database to IPD-IMGT/HLA Version: 3.54 (2023-10)
+
 ## References <a name="references"></a>
-[1]: Barker DJ, Maccari G, Georgiou X, Cooper MA, Flicek P, Robinson J, Marsh SGE. _The IPD-IMGT/HLA Database_. Nucleic Acids Research (2023) 51:D1053-60.
+Barker DJ, Maccari G, Georgiou X, Cooper MA, Flicek P, Robinson J, Marsh SGE. _The IPD-IMGT/HLA Database_. Nucleic Acids Research (2023) 51:D1053-60.
 
 ## DISCLAIMER
 THIS WEBSITE AND CONTENT AND ALL SITE-RELATED SERVICES, INCLUDING ANY DATA, ARE PROVIDED "AS IS," WITH ALL FAULTS, WITH NO REPRESENTATIONS OR WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, ANY WARRANTIES OF MERCHANTABILITY, SATISFACTORY QUALITY, NON-INFRINGEMENT OR FITNESS FOR A PARTICULAR PURPOSE. YOU ASSUME TOTAL RESPONSIBILITY AND RISK FOR YOUR USE OF THIS SITE, ALL SITE-RELATED SERVICES, AND ANY THIRD PARTY WEBSITES OR APPLICATIONS. NO ORAL OR WRITTEN INFORMATION OR ADVICE SHALL CREATE A WARRANTY OF ANY KIND. ANY REFERENCES TO SPECIFIC PRODUCTS OR SERVICES ON THE WEBSITES DO NOT CONSTITUTE OR IMPLY A RECOMMENDATION OR ENDORSEMENT BY PACIFIC BIOSCIENCES.
