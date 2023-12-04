@@ -2,7 +2,7 @@
 
 <h1 align="center">HiFiHLA</h1>
 
-HLA star-calling tool for PacBio HiFi data types.  
+HLA star-calling tool for PacBio HiFi data.  
 
 Authors: [John Harting](https://github.com/jrharting), [Zev Kronenberg](https://github.com/zeeev), [Daniel Baker](https://github.com/dnbaker), [Matt Holt](https://github.com/holtjma)
 
