@@ -2,7 +2,7 @@
 
 <h1 align="center">HiFiHLA</h1>
 
-HLA star-calling tool for PacBio HiFi genome assemblies.  
+An HLA star-calling tool for PacBio HiFi data types.  
 
 Authors: [John Harting](https://github.com/jrharting), [Zev Kronenberg](https://github.com/zeeev), [Daniel Baker](https://github.com/dnbaker), [Matt Holt](https://github.com/holtjma)
 
@@ -460,6 +460,11 @@ Changelog - PacBio HiFi HLA Typing - hifihla
 ## v0.2.2: 11/17/23
 ### Changes
 - Update database to IPD-IMGT/HLA Version: 3.54 (2023-10)
+
+## v0.2.2: 11/17/23
+### Changes
+- Option to require exon 2 in query
+- Improved error handling
 
 ## References <a name="references"></a>
 Barker DJ, Maccari G, Georgiou X, Cooper MA, Flicek P, Robinson J, Marsh SGE. _The IPD-IMGT/HLA Database_. Nucleic Acids Research (2023) 51:D1053-60.
