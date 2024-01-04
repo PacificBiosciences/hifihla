@@ -461,7 +461,7 @@ Changelog - PacBio HiFi HLA Typing - hifihla
 ### Changes
 - Update database to IPD-IMGT/HLA Version: 3.54 (2023-10)
 
-## v0.2.2: 11/17/23
+## v0.2.3: 1/4/24
 ### Changes
 - Option to require exon 2 in query
 - Improved error handling
