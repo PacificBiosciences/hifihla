@@ -77,6 +77,7 @@ Options:
   -f, --fasta <FASTA>          Input fasta file of consensus sequences
   -o, --outdir <OUTDIR>        Output directory
   -c, --cdna                   Enable cDNA-only calling
+  -e, --exon2                  Require Exon2 in query sequence
   -j, --threads <THREADS>      Analysis threads [default: 1]
   -x, --max_matches <MATCHES>  Maximum equivalent matches per query in report [default: 10]
   -v, --verbose...             Enable verbose output
@@ -96,6 +97,20 @@ Options:
  * Assembled contigs must be aligned to [GRCH38 no alts](ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/seqs_for_alignment_pipelines.ucsc_ids/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.gz)
  * Assembled haplotype fasta[.gz] files (1 or 2)  
 
+The following command using [minimap2](https://github.com/lh3/minimap2/) is recommended for assembly alignment:
+```
+minimap2 -t 12 \
+         -L --secondary=no --eqx -ax asm5\
+         -R '@RG\\tID:{sample}_hifiasm\\tSM:{sample}' \
+         GRCh38_no_alts.fasta \
+         assembly.hap1.fasta [assembly.hap2.fasta]  | \
+         samtools sort -@ 3 \
+                       -T {temp_dir} \
+                       -m 100_000 \
+                       -O BAM > {output}
+samtools index {output}
+```
+
 Options:
  * `hap2` is optional -- the fasta argument to `hap1` may contain one or two MHC haplotig sets.  If `hap2` is not set, alleles will be phased by contig name.
  * Define the loci to be extracted and called (see [IMGT genes](https://hla.alleles.org/genes/index.html)) [default all loci]
@@ -113,6 +128,7 @@ Options:
   -o, --outdir <OUTDIR>          Output directory
   -l, --loci [<LOCI>...]         Input comma-sep loci to extract [default: all]
   -s, --min_length <MINLENGTH>   Minimum length of extracted targets [default: 1000]
+  -e, --exon2                    Require Exon2 in query sequence
   -x, --max_matches <MATCHES>    Maximum equivalent matches per query in report [default: 10]
   -j, --threads <THREADS>        Analysis threads [default: 1]
   -v, --verbose...               Enable verbose output
@@ -124,10 +140,6 @@ Options:
                                   -vvv => "Trace" [default: Warn]
   -h, --help                     Print help
   -V, --version                  Print version
-
-Copyright (C) 2004-2023     Pacific Biosciences of California, Inc.
-This program comes with ABSOLUTELY NO WARRANTY; it is intended for
-Research Use Only and not for use in diagnostic procedures.
 ```
 
 ### Align queries to specific alleles in IPD-IMGT/HLA
@@ -461,10 +473,11 @@ Changelog - PacBio HiFi HLA Typing - hifihla
 ### Changes
 - Update database to IPD-IMGT/HLA Version: 3.54 (2023-10)
 
-## v0.2.3: 1/4/24
+## v0.2.3: 12/22/23
 ### Changes
-- Option to require exon 2 in query
-- Improved error handling
+- Fix reporting bug for cdna calls
+- Add option to require exon 2 to make a call
+- Improved thread control and error reporting
 
 ## References <a name="references"></a>
 Barker DJ, Maccari G, Georgiou X, Cooper MA, Flicek P, Robinson J, Marsh SGE. _The IPD-IMGT/HLA Database_. Nucleic Acids Research (2023) 51:D1053-60.
