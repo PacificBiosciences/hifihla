@@ -1,14 +1,14 @@
 ## Output <a name="output"></a>
-`call-reads`, `call-consensus` and `call-contigs` all generate three reports containing HLA star-allele type calls.  Additionally, `call-contigs` produces fasta files of extracted sequences from the assembly.
+`call-reads`, `call-consensus` and `call-contigs` all generate three reports containing HLA star-allele type calls.  Additionally, `call-contigs` produces fasta files of extracted sequences from the assembly.  If `out_prefix` is given as a directory _+ prefix/samplename_, output files will be joined to the prefix with underscore `_`. 
 
 | File                                         | Description |
 | -------------------------------------------- | ----------- |
-| {output_dir}/hifihla_summary.tsv             | Detailed file listing best call for each locus    |
-| {output_dir}/hifihla_report.tsv              | Simple tsv file listing calls for each locus      |
-| {output_dir}/hifihla_report.json             | Detailed results file, see below for example      |
-| {output_dir}/asm.contigs.h[12].fasta         | Extracted (full) assembly contigs aligning to MHC |
-| {output_dir}/asm.contigs.h[12].fasta.fai     | FASTA index for contigs                           |
-| {output_dir}/extracted.targets.h[12].fasta   | Extracted targets used for star-typing            |
+| {out_prefix}\[_/\]hifihla_summary.tsv             | Detailed file listing best call for each locus    |
+| {out_prefix}\[_/\]hifihla_report.tsv              | Simple tsv file listing calls for each locus      |
+| {out_prefix}\[_/\]hifihla_report.json             | Detailed results file, see below for example      |
+| {out_prefix}\[_/\]asm.contigs.h[12].fasta         | Extracted (full) assembly contigs aligning to MHC |
+| {out_prefix}\[_/\]asm.contigs.h[12].fasta.fai     | FASTA index for contigs                           |
+| {out_prefix}\[_/\]extracted.targets.h[12].fasta   | Extracted targets used for star-typing            |
 
 ### Detailed summary tsv
 This file reports the single best call and statistics for each query sequence in the sample.

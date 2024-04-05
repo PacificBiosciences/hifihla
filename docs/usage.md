@@ -24,7 +24,7 @@ Options:
 ## Subcommand Inputs
 | Subcommand     | Input Type                          | File types      |Description |
 |----------------|-------------------------------------|-----------------|------------|
-| call-reads     | Aligned HiFi reads                  | BAM             | Call Class I (ABC) from HiFi reads aligned to GRCh38 (no alts)                               | 
+| call-reads     | Aligned HiFi reads                  | BAM             | Call Class I (ABC) from HiFi reads aligned to [GRCH38 no alts](ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/seqs_for_alignment_pipelines.ucsc_ids/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.gz) | 
 | call-contigs   | Aligned assembly; unaligned contigs | BAM, FASTA(.gz) | Extract and Call HLA loci from assembled MHC contigs                                         |
 | call-consensus | Amplicon/Isoseq consensus           | FASTA           | Call HLA alleles from consensus sequences (e.g. amplicon assays)                             |
 | align-imgt     | Sequence/IMGT accessions            | FASTA           | Compare sequences in fasta format or database sequences to specific IMGT/HLA genomic alleles |

@@ -11,14 +11,15 @@ Options:
  * Limit output matches to full genomic IMGT accessions with `--full_length`.
 ```
 Extract HLA loci from assembled MHC contigs & call star alleles on extracted sequences
- 
-Usage: hifihla call-contigs [OPTIONS] --abam <ALIGNED_ASSEMBLY> --hap1 <HAP1_FA> --outdir <OUTDIR>
+
+Usage: hifihla call-contigs [OPTIONS] --abam <ALIGNED_ASSEMBLY> --hap1 <HAP1_FA>
 
 Options:
   -a, --abam <ALIGNED_ASSEMBLY>  Input assembly aligned to GRCh38
   -p, --hap1 <HAP1_FA>           Input hap1 assembly fa(.gz)
   -m, --hap2 <HAP2_FA>           Input hap2 assembly fa(.gz) (optional)
-  -o, --outdir <OUTDIR>          Output directory
+  -o, --out_prefix <OUT_PREFIX>  Output prefix
+      --outdir <OUTDIR>          Output directory [deprecated]
   -l, --loci [<LOCI>...]         Input comma-sep loci to extract [default: all]
   -s, --min_length <MINLENGTH>   Minimum length of extracted targets [default: 1000]
   -f, --full_length              Full length IMGT records only
@@ -26,11 +27,6 @@ Options:
   -j, --threads <THREADS>        Analysis threads [default: 1]
   -v, --verbose...               Enable verbose output
       --log-level <LOG_LEVEL>    Alternative to repeated -v/--verbose: set log level via key.
-                                 Equivalence to -v/--verbose:
-                                       => "Warn"
-                                    -v => "Info"
-                                   -vv => "Debug"
-                                  -vvv => "Trace" [default: Warn]
   -h, --help                     Print help
   -V, --version                  Print version
 ```
@@ -59,9 +55,9 @@ hifihla call-contigs \
         --abam HG00733.asm.GRCh38_no_alts.bam \
         --hap1 HG00733.paternal.f1_assembly_v2.fa.gz \
         --hap2 HG00733.maternal.f1_assembly_v2.fa.gz \
-        --outdir my_output_dir
+        --out_prefix out_dir/my_sample
 
-head -7 my_output_dir/hifihla_summary.tsv | column -t
+head -7 out_dir/my_sample_hifihla_summary.tsv | column -t
  
 queryId                                  qLen  nMatches  gType              gPctId  gPctCov  gEdit  cdnaType        exCovered        exEdit  coverage  errRate  Type
 HG00733#1#h1tg000070l_29911131_29915604  4474  1         HLA-A*24:02:01:01  100.0   100.0    0      HLA-A*24:02:01  1,2,3,4,5,6,7,8  0       1         N/A      HLA-A*24:02:01:01
@@ -77,9 +73,9 @@ hifihla call-contigs \
         --abam HG00733.asm.GRCh38_no_alts.bam \
         --hap1 HG00733.paternal.f1_assembly_v2.fa.gz \
         --loci HLA-DQA1,HLA-DPA1,HLA-DRB1 \
-        --outdir my_output_dir
+        -o out_dir/my_sample
 
-column -t my_output_dir/hifihla_summary.tsv
+column -t out_dir/my_sample_hifihla_summary.tsv
 
 queryId                                  qLen   nMatches  gType                 gPctId  gPctCov  gEdit  cdnaType           exCovered    exEdit  coverage  errRate  Type
 HG00733#1#h1tg000070l_33003286_33014048  10763  1         HLA-DPA1*01:03:01:02  100.0   100.0    0      HLA-DPA1*01:03:01  1,2,3,4      0       1         N/A      HLA-DPA1*01:03:01:02

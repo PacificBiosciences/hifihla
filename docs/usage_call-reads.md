@@ -3,7 +3,7 @@
 ```
 Call HLA loci from an aligned BAM of HiFi reads
 
-Usage: hifihla call-reads [OPTIONS] --abam <ALIGNED_READS> --outdir <OUTDIR>
+Usage: hifihla call-reads [OPTIONS] --abam <ALIGNED_READS>
 
 Options:
   -j, --threads <THREADS>      Analysis threads [default: 1]
@@ -13,7 +13,7 @@ Options:
   -V, --version                Print version
 
 Input Options:
-  -a, --abam <ALIGNED_READS>     Input assembly aligned to GRCh38
+  -a, --abam <ALIGNED_READS>     Input assembly aligned to GRCh38 (no alts)
   -l, --loci [<LOCI>...]         Input comma-sep loci to extract [default: all]
   -d, --max_depth <MAX_DEPTH>    Maximum reads per locus [default: 50]
   -p, --partial                  Include partially-spanning reads
@@ -21,17 +21,18 @@ Input Options:
   -s, --seed <SEED>              Random number seed for downsampling to max_depth [default: 42]
 
 Output Options:
-  -o, --outdir <OUTDIR>        Output directory
-  -f, --full_length            Full length IMGT records only (exclude exon-only records)
-  -x, --max_matches <MATCHES>  Maximum matches in output report [default: 10]
-  -m, --min_allele_freq <MAF>  Minimum allele frequency [default: 0.1]
-  -b, --min_cdf <MINCDF>       Minimum binomial CDF to call het/hom [default: 0.001]
+  -o, --out_prefix <OUT_PREFIX>  Output prefix
+      --outdir <OUTDIR>          Output directory [deprecated]
+  -f, --full_length              Full length IMGT records only (exclude exon-only records)
+  -x, --max_matches <MATCHES>    Maximum matches in output report [default: 10]
+  -m, --min_allele_freq <MAF>    Minimum allele frequency [default: 0.1]
+  -b, --min_cdf <MINCDF>         Minimum binomial CDF to call het/hom [default: 0.001]
 
 Presets:
   --preset <PRESET>  Sequence type presets [possible values: te, wgs]
 ```
 #### Input Options Description
-* `--abam` HiFi reads aligned to GRCh38 (no alts).
+* `--abam` HiFi reads aligned to [GRCH38 no alts](ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/seqs_for_alignment_pipelines.ucsc_ids/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.gz).
 * `--loci` HLA loci to call. Currently limited to HLA-A,HLA-B,HLA-C.
 * `--max_depth` Maximim reads to use per locus. Reads are randomly downsampled if coverage > d.
 * `--partial` Include HiFi reads that do not fully span locus, but still span exon 2 (minimum requirement).
@@ -39,7 +40,8 @@ Presets:
 * `--seed` Random number seed for downsampling and clustering.
 
 ### Output Options Description
-* `--outdir` Output directory.
+* `--out_prefix` Output prefix, accepts a directory or a directory + prefix. 
+* `--outdir` Output directory \[deprecated\].
 * `--full_length` Restrict allele matches to full length IMGT records (exclude exon-only accessions).
 * `--max_matches` Maximum number of equivalent matches to list per query sequence.
 * `--min_allele_freq` Minimum fraction of reads for minor allele.  Clusters with lower frequency will be ignored.
@@ -55,9 +57,9 @@ hifihla call-reads \
         --preset wgs \
         -j 8 \
         -a HG00733.GRCh38_no_alts.bam \
-        -o my_output_dir
+        -o out_dir/my_sample
 
-column -t my_output_dir/hifihla_summary.tsv
+column -t out_dir/my_sample_hifihla_summary.tsv
 
 queryId  qLen  nMatches  gType              gPctId  gPctCov  gEdit  cdnaType        exCovered        exEdit  coverage  errRate  Type
 HLA-A_1  3502  1         HLA-A*24:02:01:01  100.0   100.0    0      HLA-A*24:02:01  1,2,3,4,5,6,7,8  0       9         0.00346  HLA-A*24:02:01:01
@@ -93,9 +95,9 @@ hifihla call-reads \
         -f \
         -l HLA-A \
         -a NA12889.GRCH38.haplotagged.bam \
-        -o my_output_dir
+        -o out_dir/my_sample
 
-cat hifihla_report.json
+cat out_dir/my_sample_hifihla_report.json
 {
   "sample_id": "NA12889.GRCh38.haplotagged",
   "version": "hifihla 0.3.0;IPD-IMGT/HLA 3.55 (2024-01)",
