@@ -4,28 +4,26 @@ Optionally call star alleles using exon sequence only.
 ```
 Call HLA Star (*) alleles from consensus sequences
 
-Usage: hifihla call-consensus [OPTIONS] --fasta <FASTA> --outdir <OUTDIR>
+Usage: hifihla call-consensus [OPTIONS] --fasta <FASTA>
 
 Options:
-  -f, --fasta <FASTA>          Input fasta file of consensus sequences
-  -o, --outdir <OUTDIR>        Output directory
-  -c, --cdna                   Enable cDNA-only calling
-  -e, --exon2                  Require Exon2 in query sequence
-  -j, --threads <THREADS>      Analysis threads [default: 1]
-  -x, --max_matches <MATCHES>  Maximum equivalent matches per query in report [default: 10]
-  -v, --verbose...             Enable verbose output
-      --log-level <LOG_LEVEL>  Alternative to repeated -v/--verbose: set log level via key.
-                               Equivalence to -v/--verbose:
-                                     => "Warn"
-                                  -v => "Info"
-                                 -vv => "Debug"
-                                -vvv => "Trace" [default: Warn]
-  -h, --help                   Print help
-  -V, --version                Print version
+  -f, --fasta <FASTA>            Input fasta file of consensus sequences
+  -o, --out_prefix <OUT_PREFIX>  Output prefix
+      --outdir <OUTDIR>          Output directory [deprecated]
+  -c, --cdna                     Enable cDNA-only calling
+  -e, --exon2                    Require Exon2 in query sequence
+  -l, --full_length              Full length IMGT records only
+  -j, --threads <THREADS>        Analysis threads [default: 1]
+  -x, --max_matches <MATCHES>    Maximum equivalent matches per query in report [default: 10]
+  -v, --verbose...               Enable verbose output
+      --log-level <LOG_LEVEL>    Alternative to repeated -v/--verbose: set log level via key.
+  -h, --help                     Print help
+  -V, --version                  Print version
 ```
 #### Options Description
 * `--fasta` Fasta file of consensus query sequences. Only one allele per query sequence.
-* `--outdir` Output directory.
+* `--out_prefix` Output prefix, accepts a directory or a directory + prefix.
+* `--outdir` Output directory \[deprecated\].
 * `--cdna` Call and report only coding regions (cdna).  Can be used for either DNA or RNA sequences.
 * `--exon2` Require exon 2 in query. This may reduce search space.
 * `--max_matches` Only report up to this number of matches in the json report.
@@ -35,9 +33,9 @@ Type HLA consensus sequences, for example from [HiFi amplicon consensus with pba
 ```
 hifihla call-consensus \
         --fasta pbaa_12878-HG001_passed_cluster_sequences.fasta \
-        --outdir my_output_dir/
+        --out_prefix out_dir/my_sample
 
-column -t my_output_dir/hifihla_summary.tsv
+column -t out_dir/my_sample_hifihla_summary.tsv
 
 queryId                                                     qLen  nMatches  gType                 gPctId  gPctCov  gEdit  cdnaType           exCovered        exEdit  coverage  errRate  Type
 sample-12878-HG001_guide-HLA-A_cluster-0_ReadCount-1023     3098  5         HLA-A*01:01:01:01     100.0   88.43    0      HLA-A*01:01:01     1,2,3,4,5,6,7,8  0       1         N/A      HLA-A*01:01:01
@@ -57,7 +55,7 @@ Note that query sequences that match >1 allele are not labeled as four-field mat
 For example, HLA-A_cluster-1 above matches three alleles perfectly over the amplified range.  All three matches are listed in the json.
 
 ```
-jq '.. | objects | to_entries | .[] | select(.key == "sample-12878-HG001_guide-HLA-A_cluster-1_ReadCount-999")' hifihla_report.json
+jq '.. | objects | to_entries | .[] | select(.key == "sample-12878-HG001_guide-HLA-A_cluster-1_ReadCount-999")' my_sample_hifihla_report.json
 
 {
   "key": "sample-12878-HG001_guide-HLA-A_cluster-1_ReadCount-999",

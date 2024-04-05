@@ -1,3 +1,10 @@
+# v0.3.1: 04/05/24
+## Changes
+- Add output prefix option (takes directory or directory + prefix name)
+- Deprecate `outdir` (maintain backwards compatibility until v1.0)
+- Fix bug in call-reads where a read with partial exon2 (only) coverage blows up candidate pool  
+- Catch error from aligned inputs with wrong reference
+
 # v0.3.0: 03/21/24 
 ## Changes
 - New tool `call-reads` to call from HiFi reads (limited to class I)
