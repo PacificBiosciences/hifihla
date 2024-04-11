@@ -32,7 +32,7 @@ Presets:
   --preset <PRESET>  Sequence type presets [possible values: te, wgs]
 ```
 #### Input Options Description
-* `--abam` HiFi reads aligned to [GRCH38 no alts](ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/seqs_for_alignment_pipelines.ucsc_ids/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.gz).
+* `--abam` HiFi reads aligned to [GRCH38 no alts](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/seqs_for_alignment_pipelines.ucsc_ids/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.gz).
 * `--loci` HLA loci to call. Currently limited to HLA-A,HLA-B,HLA-C.
 * `--max_depth` Maximim reads to use per locus. Reads are randomly downsampled if coverage > d.
 * `--partial` Include HiFi reads that do not fully span locus, but still span exon 2 (minimum requirement).
