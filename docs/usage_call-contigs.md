@@ -1,6 +1,6 @@
 ### Type HLA from MHC assembled contigs
 `call-contigs` requires 2 or 3 input files and an output directory:
- * Assembled contigs must be aligned to [GRCH38 no alts](ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/seqs_for_alignment_pipelines.ucsc_ids/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.gz)
+ * Assembled contigs must be aligned to [GRCH38 no alts](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/seqs_for_alignment_pipelines.ucsc_ids/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.gz)
  * Assembled haplotype fasta[.gz] files (1 or 2)  
 
 Options:
