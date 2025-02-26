@@ -1,9 +1,12 @@
 <h1 align="center"><img width="300px" src="figures/logo_HiFiHLA.svg"/></h1>
 
 <h1 align="center">HiFiHLA</h1>
+<h1 align="center">[DEPRECATED]</h1>
 
 ***
 **An HLA star-calling tool for PacBio HiFi data types** 
+
+This project is deprecated. Please try [pb-StarPhase](https://github.com/PacificBiosciences/pb-StarPhase), instead.
 
 ![Project unmaintained](https://img.shields.io/badge/project-unmaintained-red.svg)
 
