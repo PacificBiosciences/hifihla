@@ -4,6 +4,9 @@
 
 ***
 **An HLA star-calling tool for PacBio HiFi data types** 
+
+![Project unmaintained](https://img.shields.io/badge/project-unmaintained-red.svg)
+
   
 HiFiHLA generates high resolution (4-field) HLA allele calls from PacBio HiFi data.  HiFiHLA identifies the closest matching allele(s) and any differences between a sample and the IPD-IMGT/HLA database. Acceptable data types include aligned HiFi reads, assembly contigs, and amplicon consensus.
 
