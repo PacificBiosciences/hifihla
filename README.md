@@ -6,7 +6,7 @@
 ***
 **An HLA star-calling tool for PacBio HiFi data types** 
 
-This project is deprecated. Please try [pb-StarPhase](https://github.com/PacificBiosciences/pb-StarPhase), instead.
+This project is deprecated. Please try [pb-StarPhase](https://github.com/PacificBiosciences/pb-StarPhase).
 
 ![Project unmaintained](https://img.shields.io/badge/project-unmaintained-red.svg)
 
